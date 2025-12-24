@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الشائعة - تبيّن</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #2b9d62;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
+            background-image: radial-gradient(var(--secondary-color) 0.5px, transparent 0.5px), radial-gradient(var(--secondary-color) 0.5px, #f8f9fa 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        /* Accordion Custom Styling */
+        .accordion-item {
+            border: none;
+            margin-bottom: 1rem;
+            border-radius: 15px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .accordion-button {
+            border-radius: 15px !important;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            padding: 1.5rem;
+            box-shadow: none !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(43, 157, 98, 0.05);
+            color: var(--secondary-color);
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232c3e50'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232b9d62'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+            background-color: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .back-btn {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(5px);
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/Tabayn FInal-01.svg') }}" alt="تبيّن" height="40">
+            </a>
+            <a href="{{ url_for('chat_interface') }}" class="btn btn-sm btn-outline-success rounded-pill px-3">
+                <i class="fa-solid fa-comments me-1"></i> المحادثة
+            </a>
+        </div>
+    </nav>
+
+    <div class="content-container">
+        <a href="{{ url_for('chat_interface') }}" class="back-btn">
+            <i class="fa-solid fa-arrow-right me-2"></i> العودة للمحادثة
+        </a>
+
+        <div class="page-header">
+            <h1 class="page-title">الأسئلة الشائعة</h1>
+            <p class="page-subtitle">جد إجابات سريعة لأكثر الاسئلة تكراراً</p>
+        </div>
+
+        <div class="accordion" id="faqAccordion">
+            <!-- Item 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne">
+                        <i class="fa-solid fa-lock me-3 ms-2 opacity-50"></i>
+                        كيف يمكنني تغيير كلمة المرور؟
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        يمكنك تغيير كلمة المرور بسهولة من صفحة تسجيل الدخول بالضغط على رابط "نسيت كلمة المرور"، وسنقوم
+                        بإرسال تعليمات التعيين إلى بريدك الإلكتروني.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo">
+                        <i class="fa-solid fa-coins me-3 ms-2 opacity-50"></i>
+                        هل خدمات تبيّن مجانية؟
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        نعم، النسخة الأساسية من منصة تبيّن متاحة مجاناً لجميع المستخدمين للاستفادة من المساعدة
+                        القانونية الأولية.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree">
+                        <i class="fa-solid fa-user-headset me-3 ms-2 opacity-50"></i>
+                        كيف يمكنني التواصل مع فريق الموظفين؟
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        حالياً، نعتمد على نظام الذكاء الاصطناعي للإجابة على جميع الاستفسارات بشكل فوري ودقيق. سيتم فتح
+                        قنوات تواصل مباشر قريباً.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

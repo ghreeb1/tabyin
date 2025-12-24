@@ -1,0 +1,360 @@
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.header-logo {
+    color: #2b9d62;
+}
+
+/* Chat Container */
+#chat-container {
+    background-color: #f8f9fa;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+    height: calc(100vh - 70px - 80px);
+    /* Approx header + input area height */
+}
+
+/* Chat Bubbles */
+.chat-bubble {
+    max-width: 85%;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.bot-bubble {
+    background-color: #ffffff;
+    color: #333;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 20px;
+}
+
+.bot-bubble p {
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+}
+
+.bot-bubble ul {
+    margin: 0.5rem 0;
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+
+.bot-bubble li {
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+}
+
+.bot-bubble strong {
+    font-weight: 600;
+    color: #2b9d62;
+}
+
+.bot-bubble h4,
+.bot-bubble h5,
+.bot-bubble h6 {
+    color: #2b9d62;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.bot-bubble h6 {
+    font-size: 0.95rem;
+}
+
+.bot-bubble h5 {
+    font-size: 1rem;
+}
+
+.bot-bubble h4 {
+    font-size: 1.1rem;
+}
+
+.user-bubble {
+    background: linear-gradient(135deg, #2b9d62, #2b6d9d);
+    color: white;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Text Direction Classes */
+.ltr-message {
+    direction: ltr;
+    text-align: left;
+}
+
+.rtl-message {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Sector Cards */
+.sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.sector-card-btn {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 15px;
+    padding: 15px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sector-card-btn i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #2b9d62;
+}
+
+.sector-card-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #495057;
+}
+
+/* Option Buttons */
+.option-btn {
+    display: block;
+    width: 100%;
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    color: #495057;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.option-btn:hover {
+    background-color: #f1f3f5;
+    border-color: #2b9d62;
+    color: #2b9d62;
+}
+
+/* Services Button */
+.services-btn-main {
+    background: linear-gradient(135deg, #2b9d62, #2b6d9d);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(43, 157, 98, 0.3);
+    transition: transform 0.2s;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.services-btn-main:hover {
+    transform: scale(1.05);
+    color: white;
+}
+
+/* Input Area */
+.input-area {
+    background-color: #ffffff;
+    border-top: 1px solid #e9ecef;
+    padding: 15px;
+}
+
+#user-input {
+    border-radius: 25px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa;
+}
+
+#user-input:focus {
+    box-shadow: none;
+    border-color: #2b9d62;
+    background-color: #ffffff;
+}
+
+.btn-send {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2b9d62, #2b6d9d);
+    border: none;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.btn-send:hover {
+    transform: scale(1.1);
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #2b9d62;
+    animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+/* Voice Controls */
+.btn-mic {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #495057;
+    transition: all 0.2s;
+}
+
+.btn-mic:hover {
+    background-color: #2b9d62;
+    border-color: #2b9d62;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-mic:active,
+.btn-mic.recording {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+/* Recording Indicator */
+.recording-pulse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.recording-pulse i {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+}
+
+/* TTS Speaker Icon */
+.tts-speaker-icon {
+    cursor: pointer;
+    color: #2b9d62;
+    font-size: 1.1rem;
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: #f8f9fa;
+    transition: all 0.2s;
+}
+
+.tts-speaker-icon:hover {
+    background-color: #2b9d62;
+    color: white;
+}
+
+.tts-speaker-icon.playing {
+    background-color: #2b9d62;
+    color: white;
+    animation: volumePulse 1s infinite;
+}
+
+@keyframes volumePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}

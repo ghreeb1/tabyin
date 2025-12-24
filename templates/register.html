@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - تبيّن</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #2b9d62;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .auth-container {
+            width: 100%;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Side (Form) */
+        .auth-form-side {
+            width: 40%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
+            position: relative;
+            overflow-y: auto;
+            /* Allow form to scroll if needed */
+        }
+
+        /* Right Side (Image/Branding) */
+        .auth-brand-side {
+            width: 60%;
+            background-color: #f8f9fa;
+            background-image: radial-gradient(var(--secondary-color) 0.5px, transparent 0.5px), radial-gradient(var(--secondary-color) 0.5px, #f8f9fa 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Overlay Gradient */
+        .auth-brand-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(43, 157, 98, 0.9) 0%, rgba(44, 62, 80, 0.8) 100%);
+            z-index: -1;
+        }
+
+        .brand-content {
+            color: white;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .brand-logo {
+            max-width: 150px;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .auth-title {
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            background-color: #f8f9fa;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(43, 157, 98, 0.1);
+            border-color: var(--secondary-color);
+            background-color: white;
+        }
+
+        .btn-auth {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            border: none;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-auth:hover {
+            background-color: #218c54;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(43, 157, 98, 0.2);
+        }
+
+        .input-group-text {
+            border: none;
+            background: transparent;
+            color: #aaa;
+        }
+
+        @media (max-width: 992px) {
+            .auth-form-side {
+                width: 100%;
+            }
+
+            .auth-brand-side {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <!-- Brand Side (Right) -->
+        <div class="auth-brand-side">
+            <div class="brand-content">
+                <img src="{{ url_for('static', filename='images/Tabayn FInal-01.svg') }}" alt="Logo" class="brand-logo">
+                <h2 class="fw-bold mb-3 display-6">انضم لعائلة تبيّن</h2>
+                <p class="lead opacity-75">سجل الآن واحصل على وصول فوري<br>لمساعدك القانوني الذكي.</p>
+
+                <div class="mt-5 d-flex gap-4 justify-content-center opacity-75">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fa-solid fa-shield-halved fs-3 mb-2"></i>
+                        <small>خصوصية تامة</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fa-solid fa-bolt fs-3 mb-2"></i>
+                        <small>سرعة ودقة</small>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fa-solid fa-scale-balanced fs-3 mb-2"></i>
+                        <small>مصادر موثوقة</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Side (Left) -->
+        <div class="auth-form-side">
+            <div class="text-center mb-5 d-lg-none">
+                <img src="{{ url_for('static', filename='images/Tabayn FInal-01.svg') }}" alt="Logo" height="50">
+            </div>
+
+            <div class="mb-4">
+                <h2 class="auth-title">إنشاء حساب جديد</h2>
+                <p class="text-muted">بياناتك آمنة معنا، املأ الحقول للبدء</p>
+            </div>
+
+            {% with messages = get_flashed_messages(category_filter=["error"]) %}
+            {% if messages %}
+            <div class="alert alert-danger py-2 mb-4 rounded-3 small border-0 bg-danger-subtle text-danger"
+                role="alert">
+                <i class="fa-solid fa-circle-exclamation me-2"></i> {{ messages[0] }}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">اسم المستخدم</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" name="username" class="form-control" required placeholder="example_user">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">البريد الإلكتروني</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="email" name="email" class="form-control" required placeholder="name@example.com">
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-muted">كلمة المرور</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" name="password" class="form-control" required placeholder="••••••••">
+                    </div>
+                    <div class="form-text small mt-1"><i class="fa-solid fa-info-circle"></i> يفضل استخدام 8 أحرف على
+                        الأقل</div>
+                </div>
+
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="terms" required>
+                    <label class="form-check-label small text-muted" for="terms">أوافق على <a href="#" id="terms-link"
+                            style="color: var(--secondary-color);">الشروط والأحكام</a> و <a href="#" id="privacy-link"
+                            style="color: var(--secondary-color);">سياسة الخصوصية</a></label>
+                </div>
+
+                <!-- Hidden Collapsible Sections -->
+                <div id="terms-content" class="collapse-content mb-4 p-3 bg-light rounded border"
+                    style="display: none;">
+                    <h6 class="fw-bold" style="color: var(--primary-color);">الشروط والأحكام</h6>
+                    <p class="small text-muted mb-0">
+                        مرحباً بك في منصة تبيّن. باستخدامك للمنصة، فإنك توافق على الالتزام بجميع القوانين واللوائح
+                        المعمول بها.
+                        يمنع استخدام المنصة لأي أغراض غير قانونية أو غير مصرح بها.
+                        نحتفظ بالحق في تعديل هذه الشروط في أي وقت، ويعتبر استمرارك في استخدام المنصة موافقة على هذه
+                        التعديلات.
+                    </p>
+                </div>
+
+                <div id="privacy-content" class="collapse-content mb-4 p-3 bg-light rounded border"
+                    style="display: none;">
+                    <h6 class="fw-bold" style="color: var(--primary-color);">سياسة الخصوصية</h6>
+                    <p class="small text-muted mb-0">
+                        نحن في تبيّن نلتزم بحماية خصوصية بياناتك.
+                        يتم جمع المعلومات اللازمة فقط لتقديم خدماتنا وتحسين تجربتك.
+                        لن نقوم بمشاركة بياناتك الشخصية مع أي طرف ثالث دون موافقتك، إلا في الحالات التي يقتضيها القانون.
+                    </p>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const termsLink = document.getElementById('terms-link');
+                        const privacyLink = document.getElementById('privacy-link');
+                        const termsContent = document.getElementById('terms-content');
+                        const privacyContent = document.getElementById('privacy-content');
+
+                        function toggleSection(link, content) {
+                            link.addEventListener('click', function (e) {
+                                e.preventDefault();
+
+                                // Check if currently visible
+                                const isVisible = content.style.display === 'block';
+
+                                // Hide all first to keep UI clean (optional sidebar behavior - uncomment if want accordion style)
+                                // termsContent.style.display = 'none';
+                                // privacyContent.style.display = 'none';
+
+                                // Toggle current
+                                content.style.display = isVisible ? 'none' : 'block';
+                            });
+                        }
+
+                        toggleSection(termsLink, termsContent);
+                        toggleSection(privacyLink, privacyContent);
+                    });
+                </script>
+
+                <button type="submit" class="btn btn-auth mb-3">تسجيل الحساب</button>
+
+                <div class="text-center mt-4">
+                    <span class="text-muted small">لديك حساب بالفعل؟</span>
+                    <a href="{{ url_for('login') }}" class="text-decoration-none fw-bold"
+                        style="color: var(--secondary-color);">تسجيل الدخول</a>
+                </div>
+            </form>
+
+            <div class="mt-auto text-center pt-4">
+                <a href="{{ url_for('index') }}" class="text-muted small text-decoration-none hover-dark">
+                    <i class="fa-solid fa-arrow-right me-1"></i> العودة للرئيسية
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

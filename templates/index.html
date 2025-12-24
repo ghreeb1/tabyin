@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <title>تبيّن – مساعدك القانوني الذكي</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid h-100 d-flex flex-column p-0">
+        <!-- Header -->
+        <header class="p-3 shadow-sm d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/Tabayn FInal-01.svg') }}" alt="Tabayn Logo"
+                    class="me-2 header-logo" style="height: 40px;">
+                <div>
+                    <h1 class="h6 mb-0 fw-bold text-dark">تبيّن</h1>
+                    <small class="text-muted">مساعدك القانوني الذكي</small>
+                </div>
+            </div>
+            <!-- Optional: Close button or other header icons -->
+            <i class="fa-solid fa-xmark text-muted fs-5" style="cursor: pointer;"></i>
+        </header>
+
+        <!-- Chat Area -->
+        <div id="chat-container" class="flex-grow-1 p-3 overflow-auto">
+            <!-- Messages will be dynamically added here -->
+            <div id="chat-messages"></div>
+
+            <!-- Loading Indicator -->
+            <div id="loading-indicator" class="d-none justify-content-start mb-3">
+                <div class="chat-bubble bot-bubble p-3">
+                    <div class="typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area sticky-bottom">
+            <form id="chat-form" class="d-flex gap-2 align-items-center">
+                <button type="button" id="mic-button" class="btn btn-mic shadow-sm" title="اضغط مع الاستمرار للتسجيل">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <input type="text" id="user-input" class="form-control" placeholder="اكتب رسالتك هنا..."
+                    autocomplete="off">
+                <button type="submit" class="btn btn-send shadow-sm">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <!-- Recording Indicator -->
+            <div id="recording-indicator" class="text-center mt-2 d-none">
+                <div class="recording-pulse">
+                    <i class="fa-solid fa-circle text-danger"></i>
+                    <span class="text-muted me-2">جاري التسجيل...</span>
+                    <span id="recording-timer" class="text-muted">00:00</span>
+                </div>
+            </div>
+
+            <div class="text-center mt-2">
+                <small class="text-muted" style="font-size: 0.7rem;">يرجى عدم مشاركة المعلومات الشخصية الحساسة</small>
+            </div>
+        </div>
+
+        <!-- Hidden audio element for TTS playback -->
+        <audio id="tts-audio" style="display: none;"></audio>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+
+</html>

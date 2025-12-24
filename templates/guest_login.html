@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دخول زائر - تبيّن</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #2b9d62;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Background pattern matching the auth-brand-side */
+            background-color: #f8f9fa;
+            background-image: radial-gradient(var(--secondary-color) 0.5px, transparent 0.5px), radial-gradient(var(--secondary-color) 0.5px, #f8f9fa 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        .guest-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 1rem;
+        }
+
+        .guest-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .guest-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo {
+            max-width: 120px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+        }
+
+        .auth-title {
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-subtitle {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-box {
+            background-color: rgba(43, 157, 98, 0.05);
+            border: 1px solid rgba(43, 157, 98, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: start;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .form-check-label {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .form-check-label a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .form-check-label a:hover {
+            color: #218c54;
+            text-decoration: underline;
+        }
+
+        .btn-guest {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            /* Pill shape */
+            font-weight: 700;
+            border: none;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(43, 157, 98, 0.2);
+        }
+
+        .btn-guest:hover {
+            background-color: #218c54;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(43, 157, 98, 0.3);
+            color: white;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1.5rem;
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        .back-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .back-link:hover i {
+            transform: translateX(3px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="guest-container">
+        <div class="guest-card">
+            <img src="{{ url_for('static', filename='images/Tabayn FInal-01.svg') }}" alt="Tabayn Logo" class="logo">
+
+            <h2 class="auth-title">الدخول كزائر</h2>
+            <p class="auth-subtitle">تصفح النظام واستفد من خدماتنا الأساسية</p>
+
+            <form method="POST" action="{{ url_for('guest_login') }}">
+                <div class="info-box">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="guestTerms" required>
+                        <label class="form-check-label" for="guestTerms">
+                            أتعهد باستخدام المنصة للأغراض القانونية المشروعة، وأوافق على <a href="#">الشروط والأحكام</a>
+                            و <a href="#">سياسة الخصوصية</a>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-guest">
+                    متابعة <i class="fa-solid fa-arrow-left me-2"></i>
+                </button>
+            </form>
+
+            <a href="{{ url_for('index') }}" class="back-link">
+                <i class="fa-solid fa-arrow-right"></i> العودة للرئيسية
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

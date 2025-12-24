@@ -375,10 +375,3 @@ For issues or questions:
 
 ---
 
-## 👨‍💻 Author
-
-**Anwaar**
-
----
-
-**Made with ❤️ for the Saudi community**
